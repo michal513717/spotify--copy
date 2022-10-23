@@ -1,5 +1,15 @@
-export interface IStore {
-    state: number;
+export interface IRegisteredData {
+    name: string;
+    password: string;
+}
 
-    action: (payload:number) => void;
+
+export interface IStore {
+    isLogged: boolean;
+    currentAudioName: string;
+    currentAudioDetails: object; // need to specify
+
+    setLoginStatus: (status: boolean) => void;
+    setCurrentAudioName: (name:string) => void;
+    setCurrentAudioDetails: (details: object) => void;// need to specify details
 }

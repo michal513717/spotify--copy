@@ -1,4 +1,5 @@
-import { contextBridge, ContextBridge } from "electron"
+import { contextBridge, ContextBridge, ipcRenderer } from "electron"
+import { IRegisteredData } from "../../models"
 
 function domReady(condition: DocumentReadyState[] = ['complete', 'interactive']) {
   return new Promise(resolve => {
@@ -80,11 +81,17 @@ function useLoading() {
 // ----------------------------------------------------------------------
 
 const ValidChanels = [
-  "app"
+  "app:auth:login",
+  "app:auth:register"
 ];
 
 contextBridge.exposeInMainWorld('electron-spotify-beckend', {
-  main:{}
+  auth: {
+    login: async (): Promise<boolean> => // it will return status
+      await ipcRenderer.invoke('app:auth:login'),
+    register: async (registeredData:IRegisteredData): Promise<void> =>  // it will return status and special code
+      await ipcRenderer.invoke("app:auth:register", registeredData)
+  }
 })
 
 const { appendLoading, removeLoading } = useLoading()

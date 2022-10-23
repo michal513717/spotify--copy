@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { ChakraProvider, ColorModeScript, extendTheme type ThemeConfig } from "@chakra-ui/react"; 
+import { ChakraProvider, ColorModeScript, extendTheme, type ThemeConfig } from "@chakra-ui/react"; 
 import App from './App'
 import 'styles/index.css'
 

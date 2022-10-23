@@ -2,11 +2,19 @@ import create from "zustand";
 import type { IStore } from "models";
 
 export const useStore = create<IStore>((set) => ({
-    state:1,
+    isLogged: false,
+    currentAudioName: '',
+    currentAudioDetails: {},
 
-    action: async (payload) => {
-        set((state) => ({...state, payload}))
+    setLoginStatus: async (status) => {
+        set((state) => ({...state, isLogged: status}))
     },
+    setCurrentAudioName: async (name) => {
+        set((state) => ({...state, currentAudioName: name}))
+    },
+    setCurrentAudioDetails: async (details) => {
+        set((state) => ({...state, currentAudioDetails: details}))
+    }
 }));
 
 process.env.NODE_ENV === "development" && useStore.subscribe(console.log);
