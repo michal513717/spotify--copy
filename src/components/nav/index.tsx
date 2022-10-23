@@ -1,9 +1,12 @@
-import react from 'react'
+import React from "react";
+import { Box } from '@chakra-ui/react';
 
-const NavMenu = () => {
+const Nav: React.FC = () => {
     return(
-        <div>
-            menu
-        </div>
+        <Box>
+
+        </Box>
     )
-}
+};
+
+export default Nav;

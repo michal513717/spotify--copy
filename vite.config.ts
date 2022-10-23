@@ -22,12 +22,9 @@ export default defineConfig({
         entry: 'electron/main/index.ts',
         vite: {
           build: {
-            // For Debug
             sourcemap: true,
             outDir: 'dist/electron/main',
           },
-          // Will start Electron via VSCode Debug
-          plugins: [process.env.VSCODE_DEBUG ? onstart() : null],
         },
       },
       preload: {
@@ -43,9 +40,6 @@ export default defineConfig({
           }
         },
       },
-      // Enables use of Node.js API in the Electron-Renderer
-      // https://github.com/electron-vite/vite-plugin-electron/tree/main/packages/electron-renderer#electron-renderervite-serve
-      renderer: {},
     }),
   ],
   server: process.env.VSCODE_DEBUG ? {

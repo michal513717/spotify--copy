@@ -1,5 +1,4 @@
-import { ContextBridge } from "electron"
-
+import { contextBridge, ContextBridge } from "electron"
 
 function domReady(condition: DocumentReadyState[] = ['complete', 'interactive']) {
   return new Promise(resolve => {
@@ -83,6 +82,10 @@ function useLoading() {
 const ValidChanels = [
   "app"
 ];
+
+contextBridge.exposeInMainWorld('electron-spotify-beckend', {
+  main:{}
+})
 
 const { appendLoading, removeLoading } = useLoading()
 domReady().then(appendLoading)

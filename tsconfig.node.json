@@ -6,8 +6,7 @@
     "moduleResolution": "Node",
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
-    "types": [
-      "vite-plugin-electron/electron-env"
-    ]
-  }
+    "downlevelIteration": true
+  },
+  "include": ["vite.config.ts", "package.json", "electron", "models.d.ts"]
 }

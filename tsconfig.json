@@ -21,6 +21,8 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
+  "include": ["src", "models.d.ts"],
+  "exclude": ["models.d.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
 

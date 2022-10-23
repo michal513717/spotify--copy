@@ -6,20 +6,31 @@
   "main": "dist/electron/main/index.js",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build && electron-builder"
+    "build": "tsc && vite build && electron-builder",
+    "lint": "eslint ."
   },
   "engines": {
     "node": "^14.18.0 || >=16.0.0"
   },
   "dependencies": {
-    "fs": "^0.0.1-security"
+    "@chakra-ui/react": "^2.3.6",
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
+    "framer-motion": "^7.6.1",
+    "fs": "^0.0.1-security",
+    "zustand": "^4.1.3"
   },
   "devDependencies": {
+    "@types/node": "^18.7.23",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
+    "@typescript-eslint/eslint-plugin": "^5.40.1",
+    "@typescript-eslint/parser": "^5.40.1",
     "@vitejs/plugin-react": "^2.0.1",
-    "electron": "^20.0.2",
+    "electron": "^20.3.3",
     "electron-builder": "^23.3.3",
+    "eslint": "^8.26.0",
+    "eslint-plugin-react": "^7.31.10",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sass": "^1.54.4",
