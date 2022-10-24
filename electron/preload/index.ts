@@ -1,4 +1,4 @@
-import { contextBridge, ContextBridge, ipcRenderer } from "electron"
+import { contextBridge, ipcRenderer } from "electron"
 import { IRegisteredData } from "../../models"
 
 function domReady(condition: DocumentReadyState[] = ['complete', 'interactive']) {
