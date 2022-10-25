@@ -1,6 +1,7 @@
-import { app, BrowserWindow, shell, ipcMain } from 'electron'
-import { release } from 'os'
-import { join } from 'path'
+import { app, BrowserWindow, shell, ipcMain } from 'electron';
+import { release } from 'os';
+import { join } from 'path';
+import './ipc/index';
 
 // Disable GPU Acceleration for Windows 7
 if (release().startsWith('6.1')) app.disableHardwareAcceleration()
@@ -35,7 +36,7 @@ async function createWindow() {
     webPreferences: {
       preload,
       nodeIntegration: true,
-      contextIsolation: false,
+      contextIsolation: true,
       devTools: true,
     },
     minHeight: 720,

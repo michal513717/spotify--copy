@@ -13,3 +13,14 @@ export interface IStore {
     setCurrentAudioName: (name:string) => void;
     setCurrentAudioDetails: (details: object) => void;// need to specify details
 }
+
+declare global {
+    interface Window {
+        electron: {
+            auth: {
+                login: () => Promise<void>;
+                register: () => Promise<void>;
+            }
+        }
+    }
+}

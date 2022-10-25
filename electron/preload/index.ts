@@ -80,12 +80,12 @@ function useLoading() {
 
 // ----------------------------------------------------------------------
 
-const ValidChanels = [
+const VALID_CHANNELS = [
   "app:auth:login",
   "app:auth:register"
 ];
 
-contextBridge.exposeInMainWorld('electron-spotify-beckend', {
+contextBridge.exposeInMainWorld('electron', {
   auth: {
     login: async (): Promise<boolean> => // it will return status
       await ipcRenderer.invoke('app:auth:login'),

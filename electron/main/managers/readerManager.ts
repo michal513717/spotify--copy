@@ -2,6 +2,7 @@ import fs from 'fs';
 
 class ReaderManager {
     currentSong: string
+    allFiles: string[]
 
     constructor(){
         this.setupData();
@@ -9,6 +10,7 @@ class ReaderManager {
 
     setupData(){
         this.currentSong = '';
+        this.allFiles = [];
     }
 
     readAllFiles(){
@@ -29,11 +31,11 @@ class ReaderManager {
     }
 
     setCurrentSong(songName:string){
-        this.currentSong = songName
+      this.currentSong = songName
     }
 
     getAllFiles(){
-
+      return this.allFiles;
     }
 
     getDetailsOfFile(songName:string){
