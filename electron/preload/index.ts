@@ -1,5 +1,5 @@
 import { contextBridge, ipcRenderer } from "electron"
-import { IRegisteredData } from "../../models"
+import { IAuthData } from "../../models"
 
 function domReady(condition: DocumentReadyState[] = ['complete', 'interactive']) {
   return new Promise(resolve => {
@@ -87,9 +87,9 @@ const VALID_CHANNELS = [
 
 contextBridge.exposeInMainWorld('electron', {
   auth: {
-    login: async (): Promise<boolean> => // it will return status
-      await ipcRenderer.invoke('app:auth:login'),
-    register: async (registeredData:IRegisteredData): Promise<void> =>  // it will return status and special code
+    login: async (loginData:IAuthData): Promise<boolean> => // it will return status
+      await ipcRenderer.invoke('app:auth:login', loginData),
+    register: async (registeredData:IAuthData): Promise<boolean> =>  // it will return status and special code
       await ipcRenderer.invoke("app:auth:register", registeredData)
   }
 })

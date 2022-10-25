@@ -1,8 +1,7 @@
-export interface IRegisteredData {
+export interface IAuthData {
     name: string;
     password: string;
 }
-
 
 export interface IStore {
     isLogged: boolean;
@@ -18,8 +17,8 @@ declare global {
     interface Window {
         electron: {
             auth: {
-                login: () => Promise<void>;
-                register: () => Promise<void>;
+                login: (data:IAuthData) => Promise<void>;
+                register: (data:IAuthData) => Promise<void>;
             }
         }
     }

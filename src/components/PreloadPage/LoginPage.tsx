@@ -2,6 +2,7 @@ import React, { useCallback } from "react";
 import { Box, Button, Flex, Image, Input } from '@chakra-ui/react'
 import { Form, useZodForm } from "@/utils/form";
 import { object, string } from "zod";
+import { electronActions } from '@/actions';
 
 const newLoginSchema = object({
     name: string().min(1),
@@ -11,7 +12,10 @@ const newLoginSchema = object({
 const LoginPage = () => {
     const form = useZodForm({ schema: newLoginSchema})
 
-    const LoginInCallback = useCallback(()=>{
+    const LoginInCallback = useCallback(( name:string, password:string )=>{
+
+        const loginData = { name, password };
+        electronActions.login(loginData);
 
     },[])
 

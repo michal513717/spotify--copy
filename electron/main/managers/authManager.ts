@@ -1,10 +1,12 @@
+import { IAuthData } from './../../../models'
+
 class AuthManager {
 
-    checkName(){
+    checkName(name:string){
 
     }
 
-    checkPassword(){
+    checkPassword(password:string){
 
     }
 
@@ -12,11 +14,11 @@ class AuthManager {
 
     }
 
-    login(){
+    login(authData:IAuthData){
 
     }
 
-    register(){
+    register(authData:IAuthData){
         
     }
 }
