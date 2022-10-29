@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
 import { GridItem, Grid, Flex, Switch, useColorMode } from '@chakra-ui/react';
-import Nav from '../Nav';
+import Nav from '../nav';
 import AudioBar from '../audioBar';
 
 const MainView: React.FC = () => {
@@ -8,8 +8,8 @@ const MainView: React.FC = () => {
     const { toggleColorMode } = useColorMode();
 
     return (
-        <>
-            <Grid
+        <><
+            Grid
                 h='100vh'
                 w='100vw'
                 gridTemplateRows='90vh 10vh'

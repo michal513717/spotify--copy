@@ -8,17 +8,30 @@ export interface IStore {
     currentAudioName: string;
     currentAudioDetails: object; // need to specify
 
+    //dialogs
+    isDialogOpen: boolean;
+
+    //setDialogsOpen
+    setDialogOpen: (status: boolean) => void;
+
     setLoginStatus: (status: boolean) => void;
-    setCurrentAudioName: (name:string) => void;
+    setCurrentAudioName: (name: string) => void;
     setCurrentAudioDetails: (details: object) => void;// need to specify details
+}
+
+export interface IUsersDetails {
+    name: string,
+    password: string,
+    specialCode: number,
+    index: number
 }
 
 declare global {
     interface Window {
         electron: {
             auth: {
-                login: (data:IAuthData) => Promise<void>;
-                register: (data:IAuthData) => Promise<void>;
+                login: (data: IAuthData) => Promise<void>;
+                register: (data: IAuthData) => Promise<boolean>;
             }
         }
     }

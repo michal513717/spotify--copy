@@ -1,8 +1,16 @@
+import { useStore } from "@/store";
 
+export function useOpenDialog() {
+  const isDialogOpen = useStore(
+    (state) => state.isDialogOpen
+  );
 
-const useOpenDialog = () => {
+  const {
+    setDialogOpen
+  } = useStore();
 
-
-}
-
-export cuseOpenDialog;
+  return {
+    isDialogOpen,
+    setDialogOpen
+  }
+};

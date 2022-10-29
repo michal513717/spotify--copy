@@ -1,5 +1,5 @@
 import React from "react";
-import { AuthErrorDialog } from './authErrorDialog' 
+import AuthErrorDialog from './authErrorDialog' 
 
 
 // all dialogs will store there!

@@ -6,14 +6,19 @@ export const useStore = create<IStore>((set) => ({
     currentAudioName: '',
     currentAudioDetails: {},
 
+    isDialogOpen: false,
+
+    setDialogOpen: async (status) => {
+        set((state) => ({ ...state, isDialogOpen: status }))
+    },
     setLoginStatus: async (status) => {
-        set((state) => ({...state, isLogged: status}))
+        set((state) => ({ ...state, isLogged: status }))
     },
     setCurrentAudioName: async (name) => {
-        set((state) => ({...state, currentAudioName: name}))
+        set((state) => ({ ...state, currentAudioName: name }))
     },
     setCurrentAudioDetails: async (details) => {
-        set((state) => ({...state, currentAudioDetails: details}))
+        set((state) => ({ ...state, currentAudioDetails: details }))
     }
 }));
 

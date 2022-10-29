@@ -1,4 +1,4 @@
-import { Button, Text, Modal, ModalHeader, ModalCloseButton, ModalFooter ModalOverlay, ModalContent, ModalBody, useDisclosure} from '@chakra-ui/react';
+import { Button, Text, Modal, ModalHeader, ModalCloseButton, ModalFooter, ModalOverlay, ModalContent, ModalBody, useDisclosure} from '@chakra-ui/react';
 
 const AuthErrorDialog = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()

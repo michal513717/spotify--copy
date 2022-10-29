@@ -8,34 +8,67 @@ const newRegisterUserSchema = object({
     name: string().min(1),
     password: string().min(1),
     repeatPassword: string().min(1),
-    specialCode: string().min(1)
 })
 
-const RegisterPage = () => {
+interface INewRegisterUserSchema {
+    name: string;
+    password: string;
+    repeatPassword: string;
+}
+
+type RegisterCallbackType = (args: INewRegisterUserSchema) => void
+
+const RegisterPage:React.FC = () => {
     const form = useZodForm({schema: newRegisterUserSchema})
 
-    const RegisterCallback = useCallback((name:string, password:string)=>{
+    const RegisterCallback = useCallback<RegisterCallbackType>( async (RegisterUserSchemaData)=>{
 
-        const registerData = {name,password};
-        electronActions.register(registerData);
+        const { name, password, repeatPassword } = RegisterUserSchemaData
 
+        if(checkIsPasswordRepeatedCorretly(password, repeatPassword)){
+            
+            const registerData = {name,password};
+            const isRegisterSuccesful =  await electronActions.register(registerData);
+            
+            if(isRegisterSuccesful){
+                // redirect to app
+            }
+        }
     },[])
+
+    const checkIsPasswordRepeatedCorretly = (str: string, str2:string) => {
+
+        //should be used normalize for unicode 
+        if(str === str2){
+            return true;
+        };
+    };
 
     return(
         <Flex
         w='100vw'
-        h='100hw'
+        h='100vh'
+        justify={'center'}
+        align={'center'}
+        
     >
-        <Flex>
+        <Flex
+        w='40%'
+        borderRadius={5}
+        borderColor={"black"}
+        boxShadow={"0px 0px 24px 0px rgba(66, 68, 90, 1)"}
+        >
+
             <Image/>
             <Form form={form} onSubmit={RegisterCallback}>
                 <Input {...form.register('name')}/>
-                <Input {...form.register('password')}/>
-                <Input {...form.register('repeatPassword')}/>
-                <Button type='submit'> Log in!</Button>
+                <Input type={'password'} {...form.register('password')}/>
+                <Input type={'password'} {...form.register('repeatPassword')}/>
+                <Button type='submit'> Register</Button>
+            <Button> Go to login </Button>
             </Form>
-            <Button> Register! </Button>
         </Flex>
+
     </Flex>
     )
 }

@@ -9,11 +9,20 @@ const newLoginSchema = object({
     password: string().min(1)
 })
 
-const LoginPage = () => {
+interface INewLoginUserSchema {
+    name: string;
+    password: string;
+    repeatPassword: string;
+}
+
+type LoginCallbackType = (args: INewLoginUserSchema) => void
+
+const LoginPage:React.FC = () => {
     const form = useZodForm({ schema: newLoginSchema})
 
-    const LoginInCallback = useCallback(( name:string, password:string )=>{
+    const LoginInCallback = useCallback<LoginCallbackType>(( newLoginSchemaData )=>{
 
+        const { name, password } = newLoginSchemaData;
         const loginData = { name, password };
         electronActions.login(loginData);
 
