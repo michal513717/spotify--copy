@@ -3,6 +3,11 @@ export interface IAuthData {
     password: string;
 }
 
+export interface IUsersDetails extends IAuthData {
+    specialCode: number,
+    index: number
+}
+
 export interface IStore {
     isLogged: boolean;
     currentAudioName: string;
@@ -19,16 +24,14 @@ export interface IStore {
     setCurrentAudioDetails: (details: object) => void;// need to specify details
 }
 
-export interface IUsersDetails {
-    name: string,
-    password: string,
-    specialCode: number,
-    index: number
-}
+
 
 declare global {
     interface Window {
         electron: {
+            addListener: (changel: string, func: <T>(...args: T[]) => void) => Promise<void>;
+            removeListener: (channel: string, func: <T>(...args: T[]) => void) => Promise<void>;
+
             auth: {
                 login: (data: IAuthData) => Promise<void>;
                 register: (data: IAuthData) => Promise<boolean>;

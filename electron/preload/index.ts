@@ -82,10 +82,28 @@ function useLoading() {
 
 const VALID_CHANNELS = [
   "app:auth:login",
-  "app:auth:register"
+  "app:auth:register",
+  "app:receive:toast"
 ];
 
 contextBridge.exposeInMainWorld('electron', {
+
+  addListener: (channel: string, func: (...args: unknown[]) => void) => {
+    if (VALID_CHANNELS.includes(channel) === false) {
+      throw new Error(`\`${channel}\` is not valid channel.`);
+    }
+
+    ipcRenderer.addListener(channel, (_event, ...args) => func(...args));
+  },
+
+  removeListener: (channel: string, func: (...args: unknown[]) => void) => {
+    if (VALID_CHANNELS.includes(channel) === false) {
+      throw new Error(`\`${channel}\` is not valid channel.`);
+    }
+
+    ipcRenderer.removeListener(channel, (_event, ...args) => func(...args));
+  },
+
   auth: {
     login: async (loginData: IAuthData): Promise<void> => // it will return status
       await ipcRenderer.invoke('app:auth:login', loginData),

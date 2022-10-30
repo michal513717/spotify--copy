@@ -20,11 +20,11 @@ type LoginCallbackType = (args: INewLoginUserSchema) => void
 const LoginPage:React.FC = () => {
     const form = useZodForm({ schema: newLoginSchema})
 
-    const LoginInCallback = useCallback<LoginCallbackType>(( newLoginSchemaData )=>{
+    const LoginInCallback = useCallback<LoginCallbackType>(async ( newLoginSchemaData )=>{
 
         const { name, password } = newLoginSchemaData;
         const loginData = { name, password };
-        electronActions.login(loginData);
+        console.log(await electronActions.login(loginData))
 
     },[])
 
