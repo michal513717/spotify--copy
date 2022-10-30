@@ -5,13 +5,23 @@ import Dialogs from '@/components/Dialogs';
 import LoginPage from './components/PreloadPage/LoginPage';
 import RegisterPage from './components/PreloadPage/RegisterPage';
 import { useToast } from '@chakra-ui/react';
+import {IhandleAppToast} from 'models';
 
-type handleAppToastType = <T>(args:T) => void
+type handleAppToastType =(...args:IhandleAppToast[]) => void;
 
 const App: React.FC = () => {
   const toast = useToast();
 
-  const handleAppToast = useCallback<handleAppToastType>(({title, description, status})=>{
+  const handleAppToast = useCallback<handleAppToastType>((...args)=>{
+
+    const title = args[0].title;
+    const description = args[0].description;
+    const status = args[0].status;
+
+    // title: string;
+    // description: string;
+    // status: statusToastType;
+
     toast({
       title,
       description,

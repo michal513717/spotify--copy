@@ -1,11 +1,19 @@
+export type statusToastType = "info" | "warning" | "success" | "error" | "loading" | undefined;
+
 export interface IAuthData {
     name: string;
     password: string;
 }
 
+export interface IhandleAppToast {
+    title: string;
+    description: string;
+    status: statusToastType;
+}
+
 export interface IUsersDetails extends IAuthData {
-    specialCode: number,
-    index: number
+    specialCode: number;
+    index: number;
 }
 
 export interface IStore {

@@ -88,7 +88,7 @@ const VALID_CHANNELS = [
 
 contextBridge.exposeInMainWorld('electron', {
 
-  addListener: (channel: string, func: (...args: unknown[]) => void) => {
+  addListener: (channel: string, func: <T> (...args: T[]) => void) => {
     if (VALID_CHANNELS.includes(channel) === false) {
       throw new Error(`\`${channel}\` is not valid channel.`);
     }
@@ -96,7 +96,7 @@ contextBridge.exposeInMainWorld('electron', {
     ipcRenderer.addListener(channel, (_event, ...args) => func(...args));
   },
 
-  removeListener: (channel: string, func: (...args: unknown[]) => void) => {
+  removeListener: (channel: string, func: <T> (...args: T[]) => void) => {
     if (VALID_CHANNELS.includes(channel) === false) {
       throw new Error(`\`${channel}\` is not valid channel.`);
     }
