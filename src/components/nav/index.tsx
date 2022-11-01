@@ -6,7 +6,7 @@ const Nav: React.FC = () => {
 
     return(
         <Box bg={backgroundColor}>
-
+            
         </Box>
     )
 };

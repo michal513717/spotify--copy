@@ -1,8 +1,8 @@
 import fs from 'fs';
 
 class ReaderManager {
-    currentSong: string
-    allFiles: string[]
+    public currentSong: string
+    private allFiles: string[]
 
     constructor(){
         this.setupData();

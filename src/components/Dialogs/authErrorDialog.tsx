@@ -5,8 +5,6 @@ const AuthErrorDialog = () => {
 
   return (
     <>
-      <Button onClick={onOpen}>Open Modal</Button>
-
       <Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>

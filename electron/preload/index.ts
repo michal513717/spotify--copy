@@ -88,7 +88,7 @@ const VALID_CHANNELS = [
 
 contextBridge.exposeInMainWorld('electron', {
 
-  addListener: (channel: string, func: <T> (...args: T[]) => void) => {
+  addListener: (channel: string, func: (...args:unknown[]) => void) => {
     if (VALID_CHANNELS.includes(channel) === false) {
       throw new Error(`\`${channel}\` is not valid channel.`);
     }
@@ -96,7 +96,7 @@ contextBridge.exposeInMainWorld('electron', {
     ipcRenderer.addListener(channel, (_event, ...args) => func(...args));
   },
 
-  removeListener: (channel: string, func: <T> (...args: T[]) => void) => {
+  removeListener: (channel: string, func: (...args:unknown[]) => void) => {
     if (VALID_CHANNELS.includes(channel) === false) {
       throw new Error(`\`${channel}\` is not valid channel.`);
     }
@@ -105,7 +105,7 @@ contextBridge.exposeInMainWorld('electron', {
   },
 
   auth: {
-    login: async (loginData: IAuthData): Promise<void> => // it will return status
+    login: async (loginData: IAuthData): Promise<boolean> => // it will return status
       await ipcRenderer.invoke('app:auth:login', loginData),
     register: async (registeredData: IAuthData): Promise<boolean> =>  // it will return status and special code
       await ipcRenderer.invoke("app:auth:register", registeredData)

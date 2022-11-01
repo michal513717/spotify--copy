@@ -37,11 +37,11 @@ export interface IStore {
 declare global {
     interface Window {
         electron: {
-            addListener: (changel: string, func: <T>(...args: T[]) => void) => Promise<void>;
-            removeListener: (channel: string, func: <T>(...args: T[]) => void) => Promise<void>;
+            addListener: (changel: string, func: (...args: unknown[]) => void) => Promise<void>;
+            removeListener: (channel: string, func: (...args: unknown[]) => void) => Promise<void>;
 
             auth: {
-                login: (data: IAuthData) => Promise<void>;
+                login: (data: IAuthData) => Promise<boolean>;
                 register: (data: IAuthData) => Promise<boolean>;
             }
         }
