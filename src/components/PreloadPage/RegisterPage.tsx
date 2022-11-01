@@ -5,7 +5,6 @@ import { object, string } from "zod";
 import { electronActions } from "@/actions";
 import loginImage from './../../assets/login.svg';
 import { useNavigate } from "react-router-dom";
-import { useStore } from "@/store";
 
 const newRegisterUserSchema = object({
     name: string().min(1),
@@ -35,7 +34,9 @@ const RegisterPage:React.FC = () => {
             const isRegisterSuccesful =  await electronActions.register(registerData);
             
             if(isRegisterSuccesful){
+                
                 // redirect to app
+                navigator('/login');
             }
         }
     },[])

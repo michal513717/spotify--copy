@@ -18,6 +18,7 @@ export interface IUsersDetails extends IAuthData {
 
 export interface IStore {
     isLogged: boolean;
+    avalibeAlbumsList: object; //need to specify
     currentAudioName: string;
     currentAudioDetails: object; // need to specify
 
@@ -27,6 +28,7 @@ export interface IStore {
     //setDialogsOpen
     setDialogOpen: (status: boolean) => void;
 
+    setAvalibeAlbumsList: (files:object) => void;
     setLoginStatus: (status: boolean) => void;
     setCurrentAudioName: (name: string) => void;
     setCurrentAudioDetails: (details: object) => void;// need to specify details
@@ -43,6 +45,10 @@ declare global {
             auth: {
                 login: (data: IAuthData) => Promise<boolean>;
                 register: (data: IAuthData) => Promise<boolean>;
+            }
+
+            reader: {
+                init: ()=> Promise<object>; // need to specify the object
             }
         }
     }

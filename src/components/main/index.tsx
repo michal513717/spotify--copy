@@ -1,23 +1,17 @@
 import React, { useCallback, useEffect } from 'react'
-import { GridItem, Grid, Flex, Switch, useColorMode } from '@chakra-ui/react';
-// import Nav from '../nav';
-import { useNavigate } from 'react-router-dom';
+import { GridItem, Grid, Switch, useColorMode } from '@chakra-ui/react';
 import AudioBar from '../audioBar';
 import { useStore } from '@/store';
+import { useAuthActions } from '@/hooks/useAuthActions';
 
 const MainView: React.FC = () => {
-    const { isLogged } = useStore();
-    const navigator = useNavigate();
-
     const { toggleColorMode } = useColorMode();
+    const { isLogged } = useStore();
+    const checkStatus = useAuthActions();
 
-    useEffect(() => {
-
-        if (isLogged === false) {
-            navigator('/login');
-        }
-
-    }, [isLogged])
+    useEffect(()=>{
+        checkStatus();
+    },[isLogged])
 
     return (
         <>

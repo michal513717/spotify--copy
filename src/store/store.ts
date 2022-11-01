@@ -3,11 +3,15 @@ import type { IStore } from "models";
 
 export const useStore = create<IStore>((set) => ({
     isLogged: false,
+    avalibeAlbumsList: {},
     currentAudioName: '',
     currentAudioDetails: {},
 
     isDialogOpen: false,
 
+    setAvalibeAlbumsList: async(files) => {
+        set((state) => ({ ...state, avalibeAlbumsList: files}))
+    },
     setDialogOpen: async (status) => {
         set((state) => ({ ...state, isDialogOpen: status }))
     },

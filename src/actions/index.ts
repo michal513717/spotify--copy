@@ -11,6 +11,11 @@ class ElectronActions {
 
         return await window.electron.auth.register(registerData);
     }
+
+    public async getAlbums(){
+
+        return await window.electron.reader.init();
+    }
 }
 
 export const electronActions = new ElectronActions();

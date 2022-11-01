@@ -83,7 +83,8 @@ function useLoading() {
 const VALID_CHANNELS = [
   "app:auth:login",
   "app:auth:register",
-  "app:receive:toast"
+  "app:receive:toast",
+  "app:reader:init"
 ];
 
 contextBridge.exposeInMainWorld('electron', {
@@ -109,6 +110,11 @@ contextBridge.exposeInMainWorld('electron', {
       await ipcRenderer.invoke('app:auth:login', loginData),
     register: async (registeredData: IAuthData): Promise<boolean> =>  // it will return status and special code
       await ipcRenderer.invoke("app:auth:register", registeredData)
+  },
+
+  reader: {
+    init: async ():Promise<object> => // need to specify the object 
+      await ipcRenderer.invoke("app:reader:init"),
   }
 })
 
