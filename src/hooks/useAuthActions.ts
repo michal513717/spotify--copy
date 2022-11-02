@@ -1,5 +1,5 @@
 import { useStore } from "@/store";
-import { useCallback, useEffect } from "react";
+import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { electronActions } from '@/actions'
 

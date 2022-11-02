@@ -1,8 +1,10 @@
 import React, { useCallback, useEffect } from 'react'
 import { GridItem, Grid, Switch, useColorMode } from '@chakra-ui/react';
 import AudioBar from '../audioBar';
+import RightSidePanelT from '../RightSidePanel';
 import { useStore } from '@/store';
 import { useAuthActions } from '@/hooks/useAuthActions';
+import Nav from '../Nav';
 
 const MainView: React.FC = () => {
     const { toggleColorMode } = useColorMode();
@@ -10,6 +12,7 @@ const MainView: React.FC = () => {
     const checkStatus = useAuthActions();
 
     useEffect(()=>{
+
         checkStatus();
     },[isLogged])
 
@@ -22,9 +25,13 @@ const MainView: React.FC = () => {
                 gridTemplateColumns='240px 1fr'
                 gap={0}
             >
-
-                {/* <Nav /> */}
-                <GridItem bg={'blue'}></GridItem>
+                <GridItem>
+                    <Nav />
+                </GridItem>
+                
+                <GridItem bg={'blue'}>
+                    <RightSidePanelT/>
+                </GridItem>
 
                 <GridItem colSpan={2}>
                     <AudioBar />

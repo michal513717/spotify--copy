@@ -1,5 +1,5 @@
 import React, { useCallback } from "react";
-import { Box, Button, Flex, Image, Input } from '@chakra-ui/react'
+import { Box, Button, Flex, Image, Input, useColorModeValue } from '@chakra-ui/react'
 import { Form, useZodForm } from "@/utils/form";
 import { object, string } from "zod";
 import { electronActions } from '@/actions';
@@ -21,6 +21,9 @@ type LoginCallbackType = (args: INewLoginUserSchema) => void
 
 const LoginPage:React.FC = () => {
     const form = useZodForm({ schema: newLoginSchema});
+    const valueBackground = useColorModeValue('blackAlpha.900','blackAlpha.800');
+    const dialogBackground = useColorModeValue('blackAlpha.500','blackAlpha.800');
+    const boxShadowColor = useColorModeValue("0px 0px 43px 1px rgba(255,255,255,1)", "0px 0px 24px 0px rgba(66, 68, 90, 1)");
     const { setLoginStatus } = useStore();
     const navigator = useNavigate();
 
@@ -48,6 +51,7 @@ const LoginPage:React.FC = () => {
             h='100vh'
             justify={'center'}
             align={'center'}
+            bgColor={valueBackground}
         >
             <Flex
                 w={'50%'}
@@ -57,7 +61,9 @@ const LoginPage:React.FC = () => {
                 align={'center'}
                 borderRadius={5}
                 borderColor={"black"}
-                boxShadow={"0px 0px 24px 0px rgba(66, 68, 90, 1)"}
+                bgColor={dialogBackground}
+                // boxShadow={"0px 0px 24px 0px rgba(66, 68, 90, 1)"}
+                boxShadow={boxShadowColor}
             >
                 <Image
                     src={loginImage}
