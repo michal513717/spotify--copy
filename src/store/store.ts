@@ -8,13 +8,20 @@ export const useStore = create<IStore>((set) => ({
     currentAudioDetails: {},
 
     isDialogOpen: false,
+    isCreatePlaylistDialogOpen: false,
 
     setAvalibeAlbumsList: async(files) => {
         set((state) => ({ ...state, avalibeAlbumsList: files}))
     },
+
+    // ---------- Dialogs ---------- 
     setDialogOpen: async (status) => {
         set((state) => ({ ...state, isDialogOpen: status }))
     },
+    setCreatePlaylistDialogOpen: async (status) => {
+        set((state) => ({ ...state, isCreatePlaylistDialogOpen: status }))
+    },
+    // -----------------------------
     setLoginStatus: async (status) => {
         set((state) => ({ ...state, isLogged: status }))
     },

@@ -1,10 +1,11 @@
 import { useStore } from "@/store";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { electronActions } from '@/actions'
 
 export function useAuthActions() {
     const { isLogged, setAvalibeAlbumsList } = useStore();
+    const [ canRender, setCanRender ] = useState<boolean>(false);
     const navigator = useNavigate();
 
     const checkStatus = useCallback(()=>{
@@ -20,10 +21,10 @@ export function useAuthActions() {
     }, [isLogged])
 
     const getAlbumsCallback = useCallback(async()=>{
-
         const avalibleAlbumsList = await electronActions.getAlbums();
         setAvalibeAlbumsList(avalibleAlbumsList);
+        setCanRender(true);
     },[])
 
-    return checkStatus;
+    return {checkStatus, canRender};
 }

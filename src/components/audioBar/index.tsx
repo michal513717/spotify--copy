@@ -4,7 +4,7 @@ import { useStore } from "@/store";
 
 const AudioBar:React.FC = () => {
     const { currentAudioName, currentAudioDetails } = useStore();
-    const backgroundColor = useColorModeValue('blackAlpha.800', 'gray.800');
+    const backgroundColor = useColorModeValue('blackAlpha.700', 'gray.800');
 
     useEffect(()=>{
 

@@ -93,7 +93,7 @@ class AuthManager {
         //require to check name
         //not required to check password, it can be checked at client side
         const { name, password } = authData;
-        const canCreateUser = this.checkName(password);
+        const canCreateUser = this.checkName(name);
 
         if (canCreateUser) {
             this.createUser(authData);

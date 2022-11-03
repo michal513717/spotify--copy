@@ -115,6 +115,11 @@ contextBridge.exposeInMainWorld('electron', {
   reader: {
     init: async ():Promise<object> => // need to specify the object 
       await ipcRenderer.invoke("app:reader:init"),
+  },
+
+  playlist: {
+    create: async (playList:string[]):Promise<void> =>
+      await ipcRenderer.invoke("app:playList:create", playList),
   }
 })
 

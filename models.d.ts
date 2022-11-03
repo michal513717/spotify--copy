@@ -24,9 +24,10 @@ export interface IStore {
 
     //dialogs
     isDialogOpen: boolean;
-
+    isCreatePlaylistDialogOpen: boolean;
     //setDialogsOpen
     setDialogOpen: (status: boolean) => void;
+    setCreatePlaylistDialogOpen: (status: boolean) => void;
 
     setAvalibeAlbumsList: (files:object) => void;
     setLoginStatus: (status: boolean) => void;
@@ -49,6 +50,10 @@ declare global {
 
             reader: {
                 init: ()=> Promise<object>; // need to specify the object
+            }
+
+            playlist: {
+                create: (playList:string[]) => Promise<void>;
             }
         }
     }

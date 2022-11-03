@@ -7,6 +7,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;
+  font-size: 18px;
 }
 
 code {
@@ -16,4 +17,9 @@ code {
 
 .formWrapper *{
   margin: 8px;
+}
+
+.dropZone {
+  border: 2px white dashed;
+  border-radius: 12px;
 }

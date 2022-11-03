@@ -16,6 +16,11 @@ class ElectronActions {
 
         return await window.electron.reader.init();
     }
+
+    public async createPlaylist(playList:string[]){
+
+        return await window.electron.playlist.create(playList);
+    }
 }
 
 export const electronActions = new ElectronActions();
