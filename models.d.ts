@@ -5,6 +5,15 @@ export interface IAuthData {
     password: string;
 }
 
+export interface IError {
+    err: string
+}
+
+export interface IResponseData<T> {
+    status: number,
+    response: T
+}
+
 export interface IhandleAppToast {
     title: string;
     description: string;

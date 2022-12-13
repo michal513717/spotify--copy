@@ -1,14 +1,24 @@
 import { IAuthData, IUsersDetails } from './../../../models'
 import { toast } from './../utils/toast';
 import { BrowserWindow } from 'electron'
+import { postAxios } from '../utils/axios';
 
 class AuthManager {
     userList: IUsersDetails[];
 
+    constructor(){
+
+        this.initAuthManager();
+    }
 
     init() {
-
+        
         this.readCurrentListOfUsers();
+    }
+
+    private async initAuthManager(){
+        console.log("FF")
+        console.log(await postAxios('http://192.168.100.2:3000/login', {userName:'aaa', password: 'aaa'}));
     }
 
     private checkName(name: string): boolean {
@@ -35,7 +45,7 @@ class AuthManager {
     }
 
     private readCurrentListOfUsers() {
-
+        // to do 
         //curently static for tests 
         this.userList = [
             {
@@ -54,9 +64,10 @@ class AuthManager {
     }
 
     public login(authData: IAuthData) {
-
+        // to do 
         // check is initialized
         // need to change this second statement in the if
+
         if (!this.userList || this.userList.length === 0) {
             this.readCurrentListOfUsers();
         }
@@ -105,11 +116,11 @@ class AuthManager {
     }
 
     private toastError(title: string, desc: string) {
-        toast.error(BrowserWindow.getFocusedWindow(), title, desc);
+        // toast.error(BrowserWindow.getFocusedWindow(), title, desc);
     }
 
     private toastSucces(title: string, desc: string) {
-        toast.success(BrowserWindow.getFocusedWindow(), title, desc);
+        // toast.success(BrowserWindow.getFocusedWindow(), title, desc);
     }
 }
 
