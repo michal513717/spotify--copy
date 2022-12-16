@@ -7,13 +7,13 @@ import loginImage from './../../assets/login.svg';
 import { useNavigate } from "react-router-dom";
 
 const newRegisterUserSchema = object({
-    name: string().min(1),
+    userName: string().min(1),
     password: string().min(1),
     repeatPassword: string().min(1),
 })
 
 interface INewRegisterUserSchema {
-    name: string;
+    userName: string;
     password: string;
     repeatPassword: string;
 }
@@ -26,11 +26,11 @@ const RegisterPage:React.FC = () => {
 
     const RegisterCallback = useCallback<RegisterCallbackType>( async (RegisterUserSchemaData)=>{
 
-        const { name, password, repeatPassword } = RegisterUserSchemaData
+        const { userName, password, repeatPassword } = RegisterUserSchemaData
 
         if(checkIsPasswordRepeatedCorretly(password, repeatPassword)){
             
-            const registerData = {name,password};
+            const registerData = {userName, password};
             const isRegisterSuccesful =  await electronActions.register(registerData);
             
             if(isRegisterSuccesful){
@@ -78,7 +78,7 @@ const RegisterPage:React.FC = () => {
                 h={'40%'}
             />
             <Form className="formWrapper" form={form} onSubmit={RegisterCallback}>
-                <Input display={"block"} {...form.register('name')} placeholder={'Nickname'}/>
+                <Input display={"block"} {...form.register('userName')} placeholder={'Nickname'}/>
                 <Input display={"block"} type={'password'} {...form.register('password')} placeholder={'Password'}/>
                 <Input display={"block"} type={'password'} {...form.register('repeatPassword')} placeholder={'Repeat password'}/>
                 <Button type='submit'> Register</Button>

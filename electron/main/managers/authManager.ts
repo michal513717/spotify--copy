@@ -1,126 +1,54 @@
-import { IAuthData, IUsersDetails } from './../../../models'
+import { IAuthData, IError, ILoginResponse, IRegisterResponse, IResponseData, IUsersDetails } from './../../../models'
 import { toast } from './../utils/toast';
 import { BrowserWindow } from 'electron'
 import { postAxios } from '../utils/axios';
 
 class AuthManager {
+    private readonly staticURL = 'http://192.168.100.2:3000/';
     userList: IUsersDetails[];
 
-    constructor(){
+    public async login(authData: IAuthData): Promise<boolean> {
 
-        this.initAuthManager();
-    }
-
-    init() {
+        const loginStatus = await postAxios<ILoginResponse>( this.staticURL + 'login', authData);
         
-        this.readCurrentListOfUsers();
+        const message = (loginStatus as IResponseData<ILoginResponse>).response.message;
+
+        if ( (loginStatus as IResponseData<ILoginResponse>).response.isLogginSuccesfull === true ){
+
+            this.toastSucces("Login Succefully", message);
+            return true;   
+        } else {
+            
+            this.toastError("Error", message);
+            return false;
+        }
     }
 
-    private async initAuthManager(){
-        console.log("FF")
-        console.log(await postAxios('http://192.168.100.2:3000/login', {userName:'aaa', password: 'aaa'}));
-    }
+    public async register(authData: IAuthData): Promise<boolean> {
+        
+        const registerStatus = await postAxios<IRegisterResponse>( this.staticURL + 'register', authData);
+        console.log(registerStatus)
 
-    private checkName(name: string): boolean {
-        let canCreate = true;
+        const message = (registerStatus as IResponseData<IRegisterResponse>).response.message;
 
-        // check is initialized
-        // need to change this second statement in the if
-        if (!this.userList || this.userList.length === 0) {
-            this.readCurrentListOfUsers();
-        }
+        
+        if ( (registerStatus as IResponseData<IRegisterResponse>).response.isResponseSuccesfull === true ){
 
-        for (const user of this.userList) {
-            if (user.name === name) {
-                canCreate = false;
-                break;
-            }
-        }
-
-        if (canCreate) {
+            this.toastSucces("login Succesfully", message);
             return true;
+        } else {
+
+            this.toastError("Error",  message);
+            return false;
         }
-
-        return false;
-    }
-
-    private readCurrentListOfUsers() {
-        // to do 
-        //curently static for tests 
-        this.userList = [
-            {
-                name: 'aaa',
-                password: 'aaa',
-                specialCode: 123,
-                index: 1
-            },
-            {
-                name: 'bbb',
-                password: 'bbb',
-                specialCode: 1234,
-                index: 2
-            }
-        ]
-    }
-
-    public login(authData: IAuthData) {
-        // to do 
-        // check is initialized
-        // need to change this second statement in the if
-
-        if (!this.userList || this.userList.length === 0) {
-            this.readCurrentListOfUsers();
-        }
-
-        for (const user of this.userList) {
-            if (user.name === authData.name && user.password === authData.password) {
-
-                this.toastSucces("Login Succefully", "");
-                return true;
-            }
-        }
-
-        this.toastError("Error", "Invalid user name or bad password");
-        return false;
-    }
-
-    private createUser(registerData: IAuthData) {
-
-        const newIndex = this.userList[this.userList.length - 1].index + 1;
-        const specialCode = this.generateSpecialCode();
-        const userDetails: IUsersDetails = Object.assign(registerData, { specialCode, index: newIndex });
-
-        this.toastSucces("Register Succefully", "");
-        this.userList.push(userDetails);
-    }
-
-    private generateSpecialCode(): number {
-
-        return Math.floor(Math.random() * (9999 - 1000 + 1) + 1000);
-    }
-
-    public register(authData: IAuthData) {
-
-        //require to check name
-        //not required to check password, it can be checked at client side
-        const { name, password } = authData;
-        const canCreateUser = this.checkName(name);
-
-        if (canCreateUser) {
-            this.createUser(authData);
-            return true;
-        }
-
-        this.toastError("Error", "user name already exist, please choose other");
-        return false;
     }
 
     private toastError(title: string, desc: string) {
-        // toast.error(BrowserWindow.getFocusedWindow(), title, desc);
+        toast.error(BrowserWindow.getFocusedWindow(), title, desc);
     }
 
     private toastSucces(title: string, desc: string) {
-        // toast.success(BrowserWindow.getFocusedWindow(), title, desc);
+        toast.success(BrowserWindow.getFocusedWindow(), title, desc);
     }
 }
 

@@ -1,7 +1,7 @@
 export type statusToastType = "info" | "warning" | "success" | "error" | "loading" | undefined;
 
 export interface IAuthData {
-    name: string;
+    userName: string;
     password: string;
 }
 
@@ -10,8 +10,18 @@ export interface IError {
 }
 
 export interface IResponseData<T> {
-    status: number,
     response: T
+    status: number,
+}
+
+export interface ILoginResponse {
+    isLogginSuccesfull: boolean
+    message: string,
+}
+
+export interface IRegisterResponse {
+    isResponseSuccesfull: boolean,
+    message: string
 }
 
 export interface IhandleAppToast {

@@ -8,12 +8,12 @@ import { useNavigate } from "react-router-dom";
 import { useStore } from "@/store";
 
 const newLoginSchema = object({
-    name: string().min(1),
+    userName: string().min(1),
     password: string().min(1)
 })
 
 interface INewLoginUserSchema {
-    name: string;
+    userName: string;
     password: string;
 }
 
@@ -29,8 +29,8 @@ const LoginPage:React.FC = () => {
 
     const LoginInCallback = useCallback<LoginCallbackType>(async ( newLoginSchemaData )=>{
 
-        const { name, password } = newLoginSchemaData;
-        const loginData = { name, password };
+        const { userName, password } = newLoginSchemaData;
+        const loginData = { userName, password };
         const loginStatus = await electronActions.login(loginData);
 
         if(loginStatus === true){
@@ -71,7 +71,7 @@ const LoginPage:React.FC = () => {
                     h={'40%'}
                 />
                 <Form className="formWrapper" form={form} onSubmit={LoginInCallback}>
-                    <Input display={'block'} placeholder={'Nickname'} {...form.register('name')}/>
+                    <Input display={'block'} placeholder={'Nickname'} {...form.register('userName')}/>
                     <Input display={'block'} placeholder={'Password'} type={'password'} {...form.register('password')}/>
                     <Button type='submit'> Log in!</Button>
                     <Button onClick={handleRedirectToRegisterPage}> Go to register new account! </Button>

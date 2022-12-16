@@ -17,7 +17,7 @@ export async function postAxios<R>(url:string, data:any): Promise< IResponseData
 
             console.log('error message: ', err.message);
 
-            return {err: err.message};
+            return {status: err.response.status, response: err.response.data};
         } else {
 
             console.log('unexpected error: ', err);
