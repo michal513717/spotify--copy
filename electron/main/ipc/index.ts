@@ -1,3 +1,3 @@
 import "./ipcHandleAuth";
-import "./ipcHandleReadFiles";
+import "./ipcHandleMusic";
 import "./ipcPlaylist";

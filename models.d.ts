@@ -24,6 +24,11 @@ export interface IRegisterResponse {
     message: string
 }
 
+export interface IAvalibleAlbumsResponse {
+    avalibleAlbums: string[],
+    message: string
+}
+
 export interface IhandleAppToast {
     title: string;
     description: string;
@@ -37,18 +42,19 @@ export interface IUsersDetails extends IAuthData {
 
 export interface IStore {
     isLogged: boolean;
-    avalibeAlbumsList: object; //need to specify
+    avalibeAlbumsList: string[]; //need to specify
     currentAudioName: string;
     currentAudioDetails: object; // need to specify
 
     //dialogs
     isDialogOpen: boolean;
     isCreatePlaylistDialogOpen: boolean;
+    
     //setDialogsOpen
     setDialogOpen: (status: boolean) => void;
     setCreatePlaylistDialogOpen: (status: boolean) => void;
 
-    setAvalibeAlbumsList: (files:object) => void;
+    setAvalibeAlbumsList: (files:string[]) => void;
     setLoginStatus: (status: boolean) => void;
     setCurrentAudioName: (name: string) => void;
     setCurrentAudioDetails: (details: object) => void;// need to specify details
@@ -65,14 +71,14 @@ declare global {
             auth: {
                 login: (data: IAuthData) => Promise<boolean>;
                 register: (data: IAuthData) => Promise<boolean>;
-            }
-
-            reader: {
-                init: ()=> Promise<object>; // need to specify the object
-            }
+            },
 
             playlist: {
                 create: (playList:string[]) => Promise<void>;
+            },
+
+            music: {
+                getAvalibleAlbums: () => Promise<string[]>;
             }
         }
     }

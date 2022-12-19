@@ -27,10 +27,11 @@ export async function postAxios<R>(url:string, data:any): Promise< IResponseData
     }
 };
 
-export async function getAxios<R>(url:string, data:any): Promise< IResponseData<R> | IError > {
+export async function getAxios<R>(url:string): Promise< IResponseData<R> | IError > {
     try{
+        console.log(url);
 
-        const response = await axios.post(url, data);
+        const response = await axios.get(url);
 
         const returnData = { response: response.data, status: response.status };
 
@@ -42,7 +43,7 @@ export async function getAxios<R>(url:string, data:any): Promise< IResponseData<
 
             console.log('error message: ', err.message);
 
-            return {err: err.message};
+            return {status: err.response.status, response: err.response.data};
         } else {
 
             console.log('unexpected error: ', err);

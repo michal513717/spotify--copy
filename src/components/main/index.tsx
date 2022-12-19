@@ -4,7 +4,7 @@ import AudioBar from '../audioBar';
 import RightSidePanelT from '../RightSidePanel';
 import { useStore } from '@/store';
 import { useAuthActions } from '@/hooks/useAuthActions';
-import Nav from '../Nav';
+import Nav from '../nav';
 
 const MainView: React.FC = () => {
     const { toggleColorMode } = useColorMode();

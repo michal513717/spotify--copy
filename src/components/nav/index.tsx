@@ -1,23 +1,13 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React from "react";
 import { Box, Flex, useColorModeValue } from '@chakra-ui/react';
 import { AddIcon, AttachmentIcon, BellIcon, ChatIcon, StarIcon, SunIcon } from "@chakra-ui/icons";
 import { useStore } from "@/store";
-import { boolean } from "zod";
 import { useOpenDialog } from "@/hooks/useOpenDialog";
 
 const Nav: React.FC = () => {
     const backgroundColor = useColorModeValue('blackAlpha.800', 'gray.900');
     const { setCreatePlaylistDialogOpen } = useOpenDialog();
     const { avalibeAlbumsList } = useStore();
-    const [ albums, setAlbums ] = useState<React.ReactNode[]>([]);
-
-    useEffect(()=> {
-        setAlbums([]);
-
-        for(let key of Object.keys(avalibeAlbumsList)){
-            setAlbums((prevState:React.ReactNode[]) => [...prevState, <Box marginTop={1} key={key}> {key} </Box>]);
-        }
-    }, [avalibeAlbumsList])
 
     return(
         <Flex 
@@ -59,7 +49,9 @@ const Nav: React.FC = () => {
                 mt={'16px'}
             >
                 {
-                    albums
+                    avalibeAlbumsList.map((item, index) => {
+                        return <Box marginTop={1} key={item+index}> {item} </Box>
+                    })
                 }
             </Flex>
 

@@ -84,7 +84,6 @@ const VALID_CHANNELS = [
   "app:auth:login",
   "app:auth:register",
   "app:receive:toast",
-  "app:reader:init"
 ];
 
 contextBridge.exposeInMainWorld('electron', {
@@ -112,15 +111,15 @@ contextBridge.exposeInMainWorld('electron', {
       await ipcRenderer.invoke("app:auth:register", registeredData)
   },
 
-  reader: {
-    init: async ():Promise<object> => // need to specify the object 
-      await ipcRenderer.invoke("app:reader:init"),
-  },
-
   playlist: {
     create: async (playList:string[]):Promise<void> =>
       await ipcRenderer.invoke("app:playList:create", playList),
-  }
+  },
+
+  music: {
+    getAvalibleAlbums:  async ():Promise<string[]> =>
+      await ipcRenderer.invoke("app:music:getAvalibleAlbums"),
+  },
 })
 
 const { appendLoading, removeLoading } = useLoading()

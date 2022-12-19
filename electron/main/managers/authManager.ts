@@ -27,10 +27,8 @@ class AuthManager {
     public async register(authData: IAuthData): Promise<boolean> {
         
         const registerStatus = await postAxios<IRegisterResponse>( this.staticURL + 'register', authData);
-        console.log(registerStatus)
 
         const message = (registerStatus as IResponseData<IRegisterResponse>).response.message;
-
         
         if ( (registerStatus as IResponseData<IRegisterResponse>).response.isResponseSuccesfull === true ){
 

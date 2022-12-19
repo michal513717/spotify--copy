@@ -12,14 +12,14 @@ class ElectronActions {
         return await window.electron.auth.register(registerData);
     }
 
-    public async getAlbums(){
-
-        return await window.electron.reader.init();
-    }
-
     public async createPlaylist(playList:string[]){
 
         return await window.electron.playlist.create(playList);
+    }
+
+    public async getAvalibleAlbums() {
+
+        return await window.electron.music.getAvalibleAlbums();
     }
 }
 

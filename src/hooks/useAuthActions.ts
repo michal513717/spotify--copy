@@ -21,7 +21,8 @@ export function useAuthActions() {
     }, [isLogged])
 
     const getAlbumsCallback = useCallback(async()=>{
-        const avalibleAlbumsList = await electronActions.getAlbums();
+ 
+        const avalibleAlbumsList = await electronActions.getAvalibleAlbums();
         setAvalibeAlbumsList(avalibleAlbumsList);
         setCanRender(true);
     },[])
