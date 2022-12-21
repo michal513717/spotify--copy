@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { electronActions } from '@/actions'
 
 export function useAuthActions() {
-    const { isLogged, setAvalibeAlbumsList } = useStore();
+    const { isLogged, setAvalibleAlbumsList } = useStore();
     const [ canRender, setCanRender ] = useState<boolean>(false);
     const navigator = useNavigate();
 
@@ -23,7 +23,7 @@ export function useAuthActions() {
     const getAlbumsCallback = useCallback(async()=>{
  
         const avalibleAlbumsList = await electronActions.getAvalibleAlbums();
-        setAvalibeAlbumsList(avalibleAlbumsList);
+        setAvalibleAlbumsList(avalibleAlbumsList);
         setCanRender(true);
     },[])
 

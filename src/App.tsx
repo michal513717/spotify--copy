@@ -1,15 +1,15 @@
 import { useCallback, useEffect, useState } from 'react';
 import React from 'react';
 import Dialogs from '@/components/Dialogs';
-import { useNavigate, Route, Routes, BrowserRouter} from 'react-router-dom';
+import { useNavigate, Route, Routes, BrowserRouter } from 'react-router-dom';
 import { useToast } from '@chakra-ui/react';
-import {IhandleAppToast} from 'models';
+import { IhandleAppToast } from 'models';
 import { useStore } from '@/store';
 import LoginPage from '@/components/PreloadPage/LoginPage';
 import RegisterPage from '@/components/PreloadPage/RegisterPage';
 import MainView from './components/main';
 
-type handleAppToastType =<T>(...args:T[]) => void;
+type handleAppToastType = <T>(...args: T[]) => void;
 
 // const LazyLoginPage = React.lazy(()=> import('./components/PreloadPage/LoginPage'));
 // const LazyRegisterPage = React.lazy(()=> import('./components/PreloadPage/RegisterPage'));
@@ -22,7 +22,7 @@ const App: React.FC = () => {
   const navigate = useNavigate();
   const toast = useToast();
 
-  const handleAppToast = useCallback<handleAppToastType>((...args:IhandleAppToast[])=>{
+  const handleAppToast = useCallback<handleAppToastType>((...args: IhandleAppToast[]) => {
 
     const title = args[0].title;
     const description = args[0].description;
@@ -35,29 +35,29 @@ const App: React.FC = () => {
       duration: 500,
       isClosable: true
     })
-  },[toast])
+  }, [toast])
 
-  useEffect(()=>{
+  useEffect(() => {
     window.electron.addListener("app:receive:toast", handleAppToast);
 
     return () => {
       window.electron.removeListener("app:receive:toast", handleAppToast);
     };
-  },[handleAppToast])
+  }, [handleAppToast])
 
 
   return (
     <>
-      <React.Suspense fallback={<Loading/>}/>
-        <Routes>
-          {/* <Route path="/login" element={<LazyLoginPage/>}/>
+      <React.Suspense fallback={<Loading />} />
+      <Routes>
+        {/* <Route path="/login" element={<LazyLoginPage/>}/>
           <Route path="/register" element={<LazyRegisterPage/>}/>
           <Route path="/" element={<LazyMainViewPage/>}/> */}
-                    <Route path="/login" element={<LoginPage/>}/>
-          <Route path="/register" element={<RegisterPage/>}/>
-          <Route path="/" element={<MainView/>}/>
-        </Routes>
-      <Dialogs/>
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/" element={<MainView />} />
+      </Routes>
+      <Dialogs />
     </>
   )
 }

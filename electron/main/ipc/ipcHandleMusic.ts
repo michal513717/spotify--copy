@@ -9,3 +9,11 @@ ipcMain.handle('app:music:getAvalibleAlbums', async () => {
         console.log(err);
     }
 });
+
+ipcMain.handle("app:music:getAvalibleMusicList", async (_evt, albumName:string) => {
+    try{
+        return await musicManager.getAvalibeMusic(albumName);
+    } catch(err) {
+        console.log(err);
+    }
+});

@@ -119,6 +119,8 @@ contextBridge.exposeInMainWorld('electron', {
   music: {
     getAvalibleAlbums:  async ():Promise<string[]> =>
       await ipcRenderer.invoke("app:music:getAvalibleAlbums"),
+    getAvalibleMusicList:  async (albumName):Promise<string[]> =>
+      await ipcRenderer.invoke("app:music:getAvalibleMusicList", albumName),
   },
 })
 

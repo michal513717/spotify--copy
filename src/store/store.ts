@@ -3,15 +3,19 @@ import type { IStore } from "models";
 
 export const useStore = create<IStore>((set) => ({
     isLogged: false,
-    avalibeAlbumsList: {},
+    avalibleAlbumsList: [],
+    avalibleMusicFromCurrentAlbum: [],
+    currentAlbum: '',
     currentAudioName: '',
-    currentAudioDetails: {},
 
     isDialogOpen: false,
     isCreatePlaylistDialogOpen: false,
 
-    setAvalibeAlbumsList: async(files) => {
-        set((state) => ({ ...state, avalibeAlbumsList: files}))
+    setAvalibleAlbumsList: async(files) => {
+        set((state) => ({ ...state, avalibleAlbumsList: files}))
+    },
+    setAvalibleMusicFromCurrentAlbum: async (musicList:string[]) => {
+        set((state) => ({ ...state, avalibleMusicFromCurrentAlbum: musicList}))
     },
 
     // ---------- Dialogs ---------- 
@@ -25,12 +29,12 @@ export const useStore = create<IStore>((set) => ({
     setLoginStatus: async (status) => {
         set((state) => ({ ...state, isLogged: status }))
     },
+    setCurrentAlbum: async (currentAlbum) => {
+        set((state) => ({ ...state, currentAlbum: currentAlbum }))
+    },
     setCurrentAudioName: async (name) => {
         set((state) => ({ ...state, currentAudioName: name }))
     },
-    setCurrentAudioDetails: async (details) => {
-        set((state) => ({ ...state, currentAudioDetails: details }))
-    }
 }));
 
 process.env.NODE_ENV === "development" && useStore.subscribe(console.log);

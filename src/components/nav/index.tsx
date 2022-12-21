@@ -1,13 +1,24 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { Box, Flex, useColorModeValue } from '@chakra-ui/react';
 import { AddIcon, AttachmentIcon, BellIcon, ChatIcon, StarIcon, SunIcon } from "@chakra-ui/icons";
 import { useStore } from "@/store";
 import { useOpenDialog } from "@/hooks/useOpenDialog";
+import { electronActions } from "@/actions";
 
 const Nav: React.FC = () => {
     const backgroundColor = useColorModeValue('blackAlpha.800', 'gray.900');
     const { setCreatePlaylistDialogOpen } = useOpenDialog();
-    const { avalibeAlbumsList } = useStore();
+    const { avalibleAlbumsList } = useStore();
+    const { setCurrentAlbum, setAvalibleMusicFromCurrentAlbum } = useStore();
+
+    const handleClickAlbum = useCallback( async (albumName:string) => {
+
+        setCurrentAlbum(albumName);
+    
+        const avalibleMusicList = await electronActions.getAvalibleMusicList(albumName)
+
+        setAvalibleMusicFromCurrentAlbum(avalibleMusicList);
+    },[])
 
     return(
         <Flex 
@@ -49,8 +60,8 @@ const Nav: React.FC = () => {
                 mt={'16px'}
             >
                 {
-                    avalibeAlbumsList.map((item, index) => {
-                        return <Box marginTop={1} key={item+index}> {item} </Box>
+                    avalibleAlbumsList.map((item, index) => {
+                        return <Box marginTop={1} key={item+index} onClick={ () => handleClickAlbum(item)}> {item} </Box>
                     })
                 }
             </Flex>

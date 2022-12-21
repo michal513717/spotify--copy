@@ -29,6 +29,11 @@ export interface IAvalibleAlbumsResponse {
     message: string
 }
 
+export interface IAvalibleMusicResponse {
+    avalibleMusicList: string[],
+    message: string
+}
+
 export interface IhandleAppToast {
     title: string;
     description: string;
@@ -42,9 +47,10 @@ export interface IUsersDetails extends IAuthData {
 
 export interface IStore {
     isLogged: boolean;
-    avalibeAlbumsList: string[]; //need to specify
+    avalibleAlbumsList: string[];
+    avalibleMusicFromCurrentAlbum: string[];
+    currentAlbum: string;
     currentAudioName: string;
-    currentAudioDetails: object; // need to specify
 
     //dialogs
     isDialogOpen: boolean;
@@ -54,10 +60,11 @@ export interface IStore {
     setDialogOpen: (status: boolean) => void;
     setCreatePlaylistDialogOpen: (status: boolean) => void;
 
-    setAvalibeAlbumsList: (files:string[]) => void;
+    setAvalibleMusicFromCurrentAlbum: (musicList:string[]) => void;
+    setAvalibleAlbumsList: (files:string[]) => void;
     setLoginStatus: (status: boolean) => void;
+    setCurrentAlbum: (currentAlbum: string) => void;
     setCurrentAudioName: (name: string) => void;
-    setCurrentAudioDetails: (details: object) => void;// need to specify details
 }
 
 
@@ -79,6 +86,7 @@ declare global {
 
             music: {
                 getAvalibleAlbums: () => Promise<string[]>;
+                getAvalibleMusicList: (albumName:string) => Promise<string[]>;
             }
         }
     }

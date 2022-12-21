@@ -21,6 +21,11 @@ class ElectronActions {
 
         return await window.electron.music.getAvalibleAlbums();
     }
+
+    public async getAvalibleMusicList(albumName:string) {
+
+        return await window.electron.music.getAvalibleMusicList(albumName);
+    }
 }
 
 export const electronActions = new ElectronActions();
