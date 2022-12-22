@@ -8,11 +8,11 @@ class MusicManager {
 
     public async getAvalibeAlbums(): Promise<string[]>{
 
-        const avalibleAlbums = await getAxios<IAvalibleAlbumsResponse>(this.staticURL);
+      const avalibleAlbums = await getAxios<IAvalibleAlbumsResponse>(this.staticURL);
 
-        if( (avalibleAlbums as IResponseData<IAvalibleAlbumsResponse>).response.avalibleAlbums.length > 0 ){
-            
-            return (avalibleAlbums as IResponseData<IAvalibleAlbumsResponse>).response.avalibleAlbums;
+        if(avalibleAlbums.ok === true){
+
+            return avalibleAlbums.responseData.avalibleAlbums;
         }
 
         return [];
@@ -20,11 +20,11 @@ class MusicManager {
 
     public async getAvalibeMusic(albumName:string): Promise<string[]>{
         
-        const avalibleMusicList = await getAxios<IAvalibleMusicResponse>(`${this.staticURL}/${albumName}`);
+      const avalibleMusicList = await getAxios<IAvalibleMusicResponse>(`${this.staticURL}/${albumName}`);
 
-        if( (avalibleMusicList as IResponseData<IAvalibleMusicResponse>).response.avalibleMusicList.length > 0 ){
-            
-            return (avalibleMusicList as IResponseData<IAvalibleMusicResponse>).response.avalibleMusicList;
+        if(avalibleMusicList.ok === true){
+
+            return avalibleMusicList.responseData.avalibleMusicList;
         }
 
         return [];

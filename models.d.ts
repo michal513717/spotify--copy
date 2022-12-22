@@ -1,5 +1,7 @@
 export type statusToastType = "info" | "warning" | "success" | "error" | "loading" | undefined;
 
+export type RequestResponse<Data extends Record<string, any>> = SuccessfulResponse<Data> | ErrorResponse
+
 export interface IAuthData {
     userName: string;
     password: string;
@@ -15,23 +17,27 @@ export interface IResponseData<T> {
 }
 
 export interface ILoginResponse {
-    isLogginSuccesfull: boolean
+    isActionSuccess:boolean;
+    isLogginSuccesfull: boolean;
     message: string,
 }
 
 export interface IRegisterResponse {
-    isResponseSuccesfull: boolean,
-    message: string
+    isActionSuccess:boolean;
+    isResponseSuccesfull: boolean;
+    message: string;
 }
 
 export interface IAvalibleAlbumsResponse {
-    avalibleAlbums: string[],
-    message: string
+    isActionSuccess:boolean;
+    avalibleAlbums: string[];
+    message: string;
 }
 
 export interface IAvalibleMusicResponse {
-    avalibleMusicList: string[],
-    message: string
+    isActionSuccess:boolean;
+    avalibleMusicList: string[];
+    message: string;
 }
 
 export interface IhandleAppToast {
@@ -43,6 +49,16 @@ export interface IhandleAppToast {
 export interface IUsersDetails extends IAuthData {
     specialCode: number;
     index: number;
+}
+
+export interface SuccessfulResponse<Data extends Record<string, any>> {
+    ok: true
+    responseData: Data
+}
+  
+export interface ErrorResponse {
+    ok: false
+    responseData: undefined
 }
 
 export interface IStore {

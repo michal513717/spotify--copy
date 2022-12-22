@@ -9,16 +9,17 @@ class AuthManager {
 
     public async login(authData: IAuthData): Promise<boolean> {
 
-        const loginStatus = await postAxios<ILoginResponse>( this.staticURL + 'login', authData);
-        
-        const message = (loginStatus as IResponseData<ILoginResponse>).response.message;
+        // const loginStatus = await postAxios<ILoginResponse>( this.staticURL + 'login', authData);
+        const loginStatus = await postAxios<ILoginResponse>(this.staticURL + 'login', authData)
 
-        if ( (loginStatus as IResponseData<ILoginResponse>).response.isLogginSuccesfull === true ){
+        const message = loginStatus.responseData.message;
+
+        if(loginStatus.ok === true){
 
             this.toastSucces("Login Succefully", message);
-            return true;   
+            return true;
         } else {
-            
+
             this.toastError("Error", message);
             return false;
         }
@@ -26,17 +27,18 @@ class AuthManager {
 
     public async register(authData: IAuthData): Promise<boolean> {
         
-        const registerStatus = await postAxios<IRegisterResponse>( this.staticURL + 'register', authData);
+        // const registerStatus = await postAxios<IRegisterResponse>( this.staticURL + 'register', authData);
+        const registerStatus = await postAxios<IRegisterResponse>(this.staticURL + 'login', authData)
 
-        const message = (registerStatus as IResponseData<IRegisterResponse>).response.message;
-        
-        if ( (registerStatus as IResponseData<IRegisterResponse>).response.isResponseSuccesfull === true ){
+        const message = registerStatus.responseData.message;
 
-            this.toastSucces("login Succesfully", message);
+        if(registerStatus.ok === true){
+
+            this.toastSucces("Login Succefully", message);
             return true;
         } else {
 
-            this.toastError("Error",  message);
+            this.toastError("Error", message);
             return false;
         }
     }

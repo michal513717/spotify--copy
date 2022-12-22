@@ -12,7 +12,7 @@ const RightSidePanelT: React.FC = () => {
             {
                 avalibleMusicFromCurrentAlbum.length > 0 ? (
                     avalibleMusicFromCurrentAlbum.map((audioName) => {
-                        return <Box>{audioName}</Box>
+                        return <Box> { audioName } </Box>
                     })
                 ) : (
                     <></>
