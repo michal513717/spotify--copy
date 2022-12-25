@@ -2,7 +2,7 @@ import create from "zustand";
 import type { IStore } from "models";
 
 export const useStore = create<IStore>((set) => ({
-    isLogged: false,
+    isLogged: true,
     avalibleAlbumsList: [],
     avalibleMusicFromCurrentAlbum: [],
     currentAlbum: '',

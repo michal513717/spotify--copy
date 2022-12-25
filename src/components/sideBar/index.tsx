@@ -5,7 +5,7 @@ import { useStore } from "@/store";
 import { useOpenDialog } from "@/hooks/useOpenDialog";
 import { electronActions } from "@/actions";
 
-const Nav: React.FC = () => {
+const SideBar: React.FC = () => {
     const backgroundColor = useColorModeValue('blackAlpha.800', 'gray.900');
     const { setCreatePlaylistDialogOpen } = useOpenDialog();
     const { avalibleAlbumsList } = useStore();
@@ -70,4 +70,4 @@ const Nav: React.FC = () => {
     )
 };
 
-export default Nav;
+export default SideBar

@@ -7,7 +7,7 @@ import { IhandleAppToast } from 'models';
 import { useStore } from '@/store';
 import LoginPage from '@/components/PreloadPage/LoginPage';
 import RegisterPage from '@/components/PreloadPage/RegisterPage';
-import MainView from './components/main';
+import MainView from './components/layout';
 
 type handleAppToastType = <T>(...args: T[]) => void;
 

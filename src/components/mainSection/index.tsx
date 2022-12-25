@@ -3,7 +3,7 @@ import React, { useCallback } from "react";
 import { useStore } from "@/store";
 
 
-const RightSidePanelT: React.FC = () => {
+const MainSection: React.FC = () => {
     const { avalibleMusicFromCurrentAlbum } = useStore();
     const { setCurrentAudioName } = useStore();
 
@@ -22,4 +22,4 @@ const RightSidePanelT: React.FC = () => {
     )
 }
 
-export default RightSidePanelT
+export default MainSection

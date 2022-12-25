@@ -1,4 +1,4 @@
-import { Box, useColorMode, useColorModeValue } from "@chakra-ui/react";
+import { Box, useColorModeValue } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import { useStore } from "@/store";
 
@@ -16,7 +16,7 @@ const AudioBar:React.FC = () => {
             h="100%"
             bg={backgroundColor}
         >
-            { currentAudioName !== '' ? <Box></Box> : <></> }
+            <audio controls/>
         </Box>
     )
 }
