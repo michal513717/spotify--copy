@@ -3,32 +3,32 @@ import { IAvalibleAlbumsResponse, IResponseData, IAvalibleMusicResponse } from '
 
 
 class MusicManager {
-    private readonly staticURL = 'http://192.168.100.2:3000/avaliblealbums'; 
-    // private readonly AVALIBLEALBUMS = 'avaliblealbums';
+  private readonly staticURL = 'http://192.168.100.11:3000/avaliblealbums';
+  // private readonly AVALIBLEALBUMS = 'avaliblealbums';
 
-    public async getAvalibeAlbums(): Promise<string[]>{
+  public async getAvalibeAlbums(): Promise<string[]> {
 
-      const avalibleAlbums = await getAxios<IAvalibleAlbumsResponse>(this.staticURL);
+    const avalibleAlbums = await getAxios<IAvalibleAlbumsResponse>(this.staticURL);
 
-        if(avalibleAlbums.ok === true){
+    if (avalibleAlbums.ok === true) {
 
-            return avalibleAlbums.responseData.avalibleAlbums;
-        }
-
-        return [];
+      return avalibleAlbums.responseData.avalibleAlbums;
     }
 
-    public async getAvalibeMusic(albumName:string): Promise<string[]>{
-        
-      const avalibleMusicList = await getAxios<IAvalibleMusicResponse>(`${this.staticURL}/${albumName}`);
+    return [];
+  }
 
-        if(avalibleMusicList.ok === true){
+  public async getAvalibeMusic(albumName: string): Promise<string[]> {
 
-            return avalibleMusicList.responseData.avalibleMusicList;
-        }
+    const avalibleMusicList = await getAxios<IAvalibleMusicResponse>(`${this.staticURL}/${albumName}`);
 
-        return [];
+    if (avalibleMusicList.ok === true) {
+
+      return avalibleMusicList.responseData.avalibleMusicList;
     }
+
+    return [];
+  }
 };
 
 export const musicManager = new MusicManager();

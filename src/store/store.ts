@@ -10,12 +10,13 @@ export const useStore = create<IStore>((set) => ({
 
     isDialogOpen: false,
     isCreatePlaylistDialogOpen: false,
+    isSettingsDialogOpen: false,
 
-    setAvalibleAlbumsList: async(files) => {
-        set((state) => ({ ...state, avalibleAlbumsList: files}))
+    setAvalibleAlbumsList: async (files) => {
+        set((state) => ({ ...state, avalibleAlbumsList: files }))
     },
-    setAvalibleMusicFromCurrentAlbum: async (musicList:string[]) => {
-        set((state) => ({ ...state, avalibleMusicFromCurrentAlbum: musicList}))
+    setAvalibleMusicFromCurrentAlbum: async (musicList: string[]) => {
+        set((state) => ({ ...state, avalibleMusicFromCurrentAlbum: musicList }))
     },
 
     // ---------- Dialogs ---------- 
@@ -24,6 +25,9 @@ export const useStore = create<IStore>((set) => ({
     },
     setCreatePlaylistDialogOpen: async (status) => {
         set((state) => ({ ...state, isCreatePlaylistDialogOpen: status }))
+    },
+    setSettingsPanelDialogOpen: async (status) => {
+        set((state) => ({ ...state, isSettingDialogOpen: status }))
     },
     // -----------------------------
     setLoginStatus: async (status) => {

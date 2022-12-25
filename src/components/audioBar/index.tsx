@@ -3,12 +3,12 @@ import React, { useEffect } from "react";
 import { useStore } from "@/store";
 
 const AudioBar:React.FC = () => {
-    const { currentAudioName, currentAudioDetails } = useStore();
+    const { currentAudioName } = useStore();
     const backgroundColor = useColorModeValue('blackAlpha.700', 'gray.800');
 
     useEffect(()=>{
 
-    },[currentAudioName, currentAudioDetails])
+    },[currentAudioName])
 
     return(
         <Box
@@ -16,8 +16,7 @@ const AudioBar:React.FC = () => {
             h="100%"
             bg={backgroundColor}
         >
-            
-            <audio/>
+            { currentAudioName !== '' ? <Box></Box> : <></> }
         </Box>
     )
 }

@@ -84,11 +84,12 @@ const VALID_CHANNELS = [
   "app:auth:login",
   "app:auth:register",
   "app:receive:toast",
+  "app:dialog:options"
 ];
 
 contextBridge.exposeInMainWorld('electron', {
 
-  addListener: (channel: string, func: (...args:unknown[]) => void) => {
+  addListener: (channel: string, func: (...args: unknown[]) => void) => {
     if (VALID_CHANNELS.includes(channel) === false) {
       throw new Error(`\`${channel}\` is not valid channel.`);
     }
@@ -96,7 +97,7 @@ contextBridge.exposeInMainWorld('electron', {
     ipcRenderer.addListener(channel, (_event, ...args) => func(...args));
   },
 
-  removeListener: (channel: string, func: (...args:unknown[]) => void) => {
+  removeListener: (channel: string, func: (...args: unknown[]) => void) => {
     if (VALID_CHANNELS.includes(channel) === false) {
       throw new Error(`\`${channel}\` is not valid channel.`);
     }
@@ -112,14 +113,14 @@ contextBridge.exposeInMainWorld('electron', {
   },
 
   playlist: {
-    create: async (playList:string[]):Promise<void> =>
+    create: async (playList: string[]): Promise<void> =>
       await ipcRenderer.invoke("app:playList:create", playList),
   },
 
   music: {
-    getAvalibleAlbums:  async ():Promise<string[]> =>
+    getAvalibleAlbums: async (): Promise<string[]> =>
       await ipcRenderer.invoke("app:music:getAvalibleAlbums"),
-    getAvalibleMusicList:  async (albumName):Promise<string[]> =>
+    getAvalibleMusicList: async (albumName): Promise<string[]> =>
       await ipcRenderer.invoke("app:music:getAvalibleMusicList", albumName),
   },
 })

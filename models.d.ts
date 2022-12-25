@@ -17,25 +17,25 @@ export interface IResponseData<T> {
 }
 
 export interface ILoginResponse {
-    isActionSuccess:boolean;
+    isActionSuccess: boolean;
     isLogginSuccesfull: boolean;
     message: string,
 }
 
 export interface IRegisterResponse {
-    isActionSuccess:boolean;
+    isActionSuccess: boolean;
     isResponseSuccesfull: boolean;
     message: string;
 }
 
 export interface IAvalibleAlbumsResponse {
-    isActionSuccess:boolean;
+    isActionSuccess: boolean;
     avalibleAlbums: string[];
     message: string;
 }
 
 export interface IAvalibleMusicResponse {
-    isActionSuccess:boolean;
+    isActionSuccess: boolean;
     avalibleMusicList: string[];
     message: string;
 }
@@ -55,7 +55,7 @@ export interface SuccessfulResponse<Data extends Record<string, any>> {
     ok: true
     responseData: Data
 }
-  
+
 export interface ErrorResponse {
     ok: false
     responseData: undefined
@@ -71,13 +71,15 @@ export interface IStore {
     //dialogs
     isDialogOpen: boolean;
     isCreatePlaylistDialogOpen: boolean;
-    
+    isSettingsDialogOpen: boolean;
+
     //setDialogsOpen
     setDialogOpen: (status: boolean) => void;
     setCreatePlaylistDialogOpen: (status: boolean) => void;
+    setSettingsPanelDialogOpen: (status: boolean) => void;
 
-    setAvalibleMusicFromCurrentAlbum: (musicList:string[]) => void;
-    setAvalibleAlbumsList: (files:string[]) => void;
+    setAvalibleMusicFromCurrentAlbum: (musicList: string[]) => void;
+    setAvalibleAlbumsList: (files: string[]) => void;
     setLoginStatus: (status: boolean) => void;
     setCurrentAlbum: (currentAlbum: string) => void;
     setCurrentAudioName: (name: string) => void;
@@ -97,12 +99,12 @@ declare global {
             },
 
             playlist: {
-                create: (playList:string[]) => Promise<void>;
+                create: (playList: string[]) => Promise<void>;
             },
 
             music: {
                 getAvalibleAlbums: () => Promise<string[]>;
-                getAvalibleMusicList: (albumName:string) => Promise<string[]>;
+                getAvalibleMusicList: (albumName: string) => Promise<string[]>;
             }
         }
     }

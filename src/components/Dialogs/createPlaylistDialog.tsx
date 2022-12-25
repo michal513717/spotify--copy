@@ -2,7 +2,7 @@ import { useOpenDialog } from '@/hooks/useOpenDialog';
 import { Button, Text, Modal, ModalHeader, ModalCloseButton, ModalFooter, ModalOverlay, ModalContent, ModalBody, useDisclosure, Box} from '@chakra-ui/react';
 import { useCallback, useEffect, useState } from 'react';
 import { electronActions } from '@/actions';
-import Dropzone from 'react-dropzone'
+import Dropzone from 'react-dropzone';
 
 type onDropCallbackType = <T extends {name:string}>(files:T[]) => void;
 

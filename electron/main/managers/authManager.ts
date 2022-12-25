@@ -4,7 +4,7 @@ import { BrowserWindow } from 'electron'
 import { postAxios } from '../utils/axios';
 
 class AuthManager {
-    private readonly staticURL = 'http://192.168.100.2:3000/';
+    private readonly staticURL = 'http://192.168.100.11:3000/';
     userList: IUsersDetails[];
 
     public async login(authData: IAuthData): Promise<boolean> {
@@ -14,7 +14,7 @@ class AuthManager {
 
         const message = loginStatus.responseData.message;
 
-        if(loginStatus.ok === true){
+        if (loginStatus.ok === true) {
 
             this.toastSucces("Login Succefully", message);
             return true;
@@ -26,13 +26,13 @@ class AuthManager {
     }
 
     public async register(authData: IAuthData): Promise<boolean> {
-        
+
         // const registerStatus = await postAxios<IRegisterResponse>( this.staticURL + 'register', authData);
         const registerStatus = await postAxios<IRegisterResponse>(this.staticURL + 'login', authData)
 
         const message = registerStatus.responseData.message;
 
-        if(registerStatus.ok === true){
+        if (registerStatus.ok === true) {
 
             this.toastSucces("Login Succefully", message);
             return true;

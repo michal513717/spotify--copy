@@ -7,7 +7,6 @@ import { useAuthActions } from '@/hooks/useAuthActions';
 import Nav from '../nav';
 
 const MainView: React.FC = () => {
-    const { toggleColorMode } = useColorMode();
     const { isLogged } = useStore();
     const {checkStatus, canRender} = useAuthActions();
 
@@ -37,11 +36,7 @@ const MainView: React.FC = () => {
                     <GridItem colSpan={2}>
                         <AudioBar />
                     </GridItem>
-                </Grid><Switch
-                        pos={"absolute"}
-                        top={0}
-                        right={0}
-                        onChange={toggleColorMode} /></>
+                </Grid></>
             ) : (
                 <Box>Loading ....</Box>
             )
