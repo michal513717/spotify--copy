@@ -1,9 +1,10 @@
-import { Box } from "@chakra-ui/react";
+import { Box, useColorModeValue } from "@chakra-ui/react";
 import React, { useCallback } from "react";
 import { useStore } from "@/store";
 
 
 const MainSection: React.FC = () => {
+
     const { avalibleMusicFromCurrentAlbum } = useStore();
     const { setCurrentAudioName } = useStore();
 

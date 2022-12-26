@@ -1,10 +1,10 @@
-import { IAuthData, IError, ILoginResponse, IRegisterResponse, IResponseData, IUsersDetails } from './../../../models'
+import { IAuthData, ILoginResponse, IRegisterResponse, IResponseData, IUsersDetails } from './../../../models'
 import { toast } from './../utils/toast';
 import { BrowserWindow } from 'electron'
 import { postAxios } from '../utils/axios';
 
 class AuthManager {
-    private readonly staticURL = 'http://192.168.100.11:3000/';
+    private readonly staticURL = 'http://192.168.100.2:3000/';
     userList: IUsersDetails[];
 
     public async login(authData: IAuthData): Promise<boolean> {

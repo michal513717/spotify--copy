@@ -3,7 +3,7 @@ import { IAvalibleAlbumsResponse, IResponseData, IAvalibleMusicResponse } from '
 
 
 class MusicManager {
-  private readonly staticURL = 'http://192.168.100.11:3000/avaliblealbums';
+  private readonly staticURL = 'http://192.168.100.2:3000/avaliblealbums';
   // private readonly AVALIBLEALBUMS = 'avaliblealbums';
 
   public async getAvalibeAlbums(): Promise<string[]> {
