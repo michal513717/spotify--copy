@@ -57,19 +57,19 @@ export async function postAxios<Data extends Record<string, any>>(url: string, d
     try {
 
         const response = await axios.post(url, data);
-        
+
         if (!response.data.isActionSuccess) {
             throw new Error(response.statusText);
         }
 
         return {
             ok: true,
-            responseData: response.data.message,
+            responseData: response.data,
         }
     } catch (error) {
         return {
             ok: false,
-            responseData: undefined,
+            responseData: error?.response?.data ? error.response.data : undefined,
         }
     }
 };
@@ -90,7 +90,7 @@ export async function getAxios<Data extends Record<string, any>>(url: string): P
     } catch (error) {
         return {
             ok: false,
-            responseData: undefined,
+            responseData: error?.response?.data ? error?.response?.data : undefined,
         }
     }
 };

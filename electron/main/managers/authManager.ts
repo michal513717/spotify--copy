@@ -1,4 +1,4 @@
-import { IAuthData, ILoginResponse, IRegisterResponse, IResponseData, IUsersDetails } from './../../../models'
+import { IAuthData, ILoginResponse, ILoginStatus, IRegisterResponse, IUsersDetails } from './../../../models'
 import { toast } from './../utils/toast';
 import { BrowserWindow } from 'electron'
 import { postAxios } from '../utils/axios';
@@ -7,28 +7,28 @@ class AuthManager {
     private readonly staticURL = 'http://192.168.100.2:3000/';
     userList: IUsersDetails[];
 
-    public async login(authData: IAuthData): Promise<boolean> {
+    public async login(authData: IAuthData): Promise<ILoginStatus> {
 
         // const loginStatus = await postAxios<ILoginResponse>( this.staticURL + 'login', authData);
         const loginStatus = await postAxios<ILoginResponse>(this.staticURL + 'login', authData)
 
         const message = loginStatus.responseData.message;
-
+        console.log(loginStatus)
         if (loginStatus.ok === true) {
 
             this.toastSucces("Login Succefully", message);
-            return true;
+            return { isAdminAccount: loginStatus.responseData.isAdminAccount, isLogginSuccesfull:true }
         } else {
 
             this.toastError("Error", message);
-            return false;
+            return { isAdminAccount: false, isLogginSuccesfull: false };
         }
     }
 
     public async register(authData: IAuthData): Promise<boolean> {
 
         // const registerStatus = await postAxios<IRegisterResponse>( this.staticURL + 'register', authData);
-        const registerStatus = await postAxios<IRegisterResponse>(this.staticURL + 'login', authData)
+        const registerStatus = await postAxios<IRegisterResponse>(this.staticURL + 'register', authData)
 
         const message = registerStatus.responseData.message;
 

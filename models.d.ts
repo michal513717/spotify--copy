@@ -19,7 +19,13 @@ export interface IResponseData<T> {
 export interface ILoginResponse {
     isActionSuccess: boolean;
     isLogginSuccesfull: boolean;
-    message: string,
+    isAdminAccount:boolean;
+    message: string;
+}
+
+export interface ILoginStatus {
+    isLogginSuccesfull: boolean;
+    isAdminAccount: boolean;
 }
 
 export interface IRegisterResponse {
@@ -68,16 +74,19 @@ export interface IStore {
     currentAlbum: string;
     currentAudioName: string;
 
+    isAdminAccount: boolean;
+
     //dialogs
     isDialogOpen: boolean;
-    isCreatePlaylistDialogOpen: boolean;
+    isUploadFileDialogOpen: boolean;
     isSettingsDialogOpen: boolean;
 
     //setDialogsOpen
     setDialogOpen: (status: boolean) => void;
-    setCreatePlaylistDialogOpen: (status: boolean) => void;
+    setUploadFileDialogOpen: (status: boolean) => void;
     setSettingsPanelDialogOpen: (status: boolean) => void;
 
+    setAdminAccount: (status: boolean) => void;
     setAvalibleMusicFromCurrentAlbum: (musicList: string[]) => void;
     setAvalibleAlbumsList: (files: string[]) => void;
     setLoginStatus: (status: boolean) => void;
@@ -94,7 +103,7 @@ declare global {
             removeListener: (channel: string, func: (...args: unknown[]) => void) => Promise<void>;
 
             auth: {
-                login: (data: IAuthData) => Promise<boolean>;
+                login: (data: IAuthData) => Promise<ILoginStatus>;
                 register: (data: IAuthData) => Promise<boolean>;
             },
 

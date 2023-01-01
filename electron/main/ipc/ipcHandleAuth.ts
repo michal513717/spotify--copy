@@ -1,9 +1,9 @@
 import { ipcMain } from "electron";
-import { IAuthData } from "../../../models";
+import { IAuthData, ILoginStatus } from "../../../models";
 import { authManager } from './../managers/authManager';
 
 
-ipcMain.handle("app:auth:login", async (_event, authData:IAuthData): Promise<boolean> => {
+ipcMain.handle("app:auth:login", async (_event, authData:IAuthData): Promise<ILoginStatus> => {
     try{
         return await authManager.login(authData);
     } catch (error) {

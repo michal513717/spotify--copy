@@ -2,14 +2,15 @@ import create from "zustand";
 import type { IStore } from "models";
 
 export const useStore = create<IStore>((set) => ({
-    isLogged: true,
+    isLogged: false,
     avalibleAlbumsList: [],
     avalibleMusicFromCurrentAlbum: [],
     currentAlbum: '',
     currentAudioName: '',
 
+    isAdminAccount: false,
     isDialogOpen: false,
-    isCreatePlaylistDialogOpen: false,
+    isUploadFileDialogOpen: false,
     isSettingsDialogOpen: false,
 
     setAvalibleAlbumsList: async (files) => {
@@ -23,8 +24,8 @@ export const useStore = create<IStore>((set) => ({
     setDialogOpen: async (status) => {
         set((state) => ({ ...state, isDialogOpen: status }))
     },
-    setCreatePlaylistDialogOpen: async (status) => {
-        set((state) => ({ ...state, isCreatePlaylistDialogOpen: status }))
+    setUploadFileDialogOpen: async (status) => {
+        set((state) => ({ ...state, isUploadFileDialogOpen: status }))
     },
     setSettingsPanelDialogOpen: async (status) => {
         set((state) => ({ ...state, isSettingDialogOpen: status }))
@@ -32,6 +33,9 @@ export const useStore = create<IStore>((set) => ({
     // -----------------------------
     setLoginStatus: async (status) => {
         set((state) => ({ ...state, isLogged: status }))
+    },
+    setAdminAccount: async (status) => {
+        set((state) => ({ ...state, isAdminAccount: status }))
     },
     setCurrentAlbum: async (currentAlbum) => {
         set((state) => ({ ...state, currentAlbum: currentAlbum }))

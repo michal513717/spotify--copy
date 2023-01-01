@@ -1,6 +1,6 @@
 import React from "react";
 import AuthErrorDialog from './authErrorDialog' 
-import CreatePlaylistDialog from "./createPlaylistDialog";
+import UploadFileDialog from "./uploadFileDialog";
 import SettingsDialog from "./settingsDialog";
 
 // all dialogs will store there!
@@ -10,7 +10,7 @@ const Dialogs:React.FC = () => {
   return (
     <>
       <AuthErrorDialog/>
-      <CreatePlaylistDialog/>
+      <UploadFileDialog/>
       <SettingsDialog/>
     </>
   );

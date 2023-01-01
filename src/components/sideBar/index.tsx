@@ -7,8 +7,8 @@ import { electronActions } from "@/actions";
 
 const SideBar: React.FC = () => {
 
-    const { setCreatePlaylistDialogOpen } = useOpenDialog();
-    const { avalibleAlbumsList } = useStore();
+    const { setUploadFileDialogOpen } = useOpenDialog();
+    const { avalibleAlbumsList, isAdminAccount } = useStore();
     const { setCurrentAlbum, setAvalibleMusicFromCurrentAlbum } = useStore();
 
     const handleClickAlbum = useCallback( async (albumName:string) => {
@@ -35,6 +35,16 @@ const SideBar: React.FC = () => {
                     avalibleAlbumsList.map((item, index) => {
                         return <Box marginTop={1} key={item+index} onClick={ () => handleClickAlbum(item)}> {item} </Box>
                     })
+                }
+
+                {
+                    isAdminAccount ? ( 
+                        <>
+                            <Box onClick={()=>setUploadFileDialogOpen(true)}> Upload Files </Box>
+                        </>
+                    ) : (
+                        <></>
+                    )
                 }
             </Flex>
 

@@ -24,17 +24,18 @@ const LoginPage:React.FC = () => {
     const valueBackground = useColorModeValue('blackAlpha.900','blackAlpha.800');
     const dialogBackground = useColorModeValue('blackAlpha.500','blackAlpha.800');
     const boxShadowColor = useColorModeValue("0px 0px 43px 1px rgba(255,255,255,1)", "0px 0px 24px 0px rgba(66, 68, 90, 1)");
-    const { setLoginStatus } = useStore();
+    const { setLoginStatus, setAdminAccount } = useStore();
     const navigator = useNavigate();
 
     const LoginInCallback = useCallback<LoginCallbackType>(async ( newLoginSchemaData )=>{
 
         const { userName, password } = newLoginSchemaData;
         const loginData = { userName, password };
-        const loginStatus = await electronActions.login(loginData);
+        const { isAdminAccount, isLogginSuccesfull } = await electronActions.login(loginData);
+        
+        if(isLogginSuccesfull === true){
 
-        if(loginStatus === true){
-
+            setAdminAccount(isAdminAccount);
             setLoginStatus(true);
             navigator('/');
         }
